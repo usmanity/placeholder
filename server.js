@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const fs = require("fs");
 const { createCanvas } = require("canvas");
+const { convert } = require("convert-svg-to-png");
 
 const port = process.env.PORT || 3000;
 
@@ -11,7 +11,7 @@ app.get(["/"], (req, res) => {
   res.send(greeting);
 });
 
-app.get("/:size", (req, res) => {
+app.get("/:size", async (req, res) => {
   const size = getSize(req.params["size"]);
   console.log({ size });
   if (size[0] > 10000 || size[1] > 10000) {
@@ -19,10 +19,12 @@ app.get("/:size", (req, res) => {
     return;
   }
 
-  const i = getImage(size);
-  console.log(i);
-  res.contentType("image/jpeg");
-  res.send(i);
+  const svgImage = getSvgImage(size);
+  console.log({ svgImage });
+  const png = await convert(svgImage);
+
+  res.set("Content-Type", "image/png");
+  res.send(png);
 });
 
 app.listen(port, () =>
@@ -39,19 +41,10 @@ function getSize(params) {
   }
 }
 
-function getImage(size) {
-  const WIDTH = size[0];
-  const HEIGHT = size[1];
-
-  const canvas = createCanvas(WIDTH, HEIGHT);
-  const ctx = canvas.getContext("2d");
-
-  ctx.fillStyle = "#CCCCCC";
-  ctx.fillRect(0, 0, WIDTH, HEIGHT);
-  ctx.fillStyle = "#2A1863";
-  ctx.font = "32px monospace";
-  ctx.fillText(`${WIDTH} x ${HEIGHT}`, 16, 32);
-
-  const buffer = canvas.toBuffer("image/jpeg");
-  return buffer;
+function getSvgImage(size) {
+  const [width, height] = size;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" fill="none" viewBox="0 0 ${width} ${height}">
+    <path fill="#D9D9D9" />
+    <text x="33%" y="50%" font-family="monospace" font-size="35" fill="#262626">${width} x ${height}</text>
+  </svg>`;
 }

@@ -16,6 +16,8 @@
   "homepage": "TODO",
   "dependencies": {
     "canvas": "^2.11.2",
-    "express": "^4.17.1"
+    "convert-svg-to-png": "^0.6.4",
+    "express": "^4.17.1",
+    "sharp": "^0.32.1"
   }
 }
