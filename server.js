@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
 const fs = require("fs");
 const { createCanvas } = require("canvas");
+
+const port = process.env.PORT || 3000;
 
 app.get(["/"], (req, res) => {
   greeting =
@@ -18,7 +19,6 @@ app.get("/:size", (req, res) => {
     return;
   }
 
-  // res.send(`<p>${size}</p>`);
   const i = getImage(size);
   console.log(i);
   res.contentType("image/jpeg");
@@ -49,7 +49,7 @@ function getImage(size) {
   ctx.fillStyle = "#CCCCCC";
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
   ctx.fillStyle = "#2A1863";
-  ctx.font = "32px sans-serif";
+  ctx.font = "32px monospace";
   ctx.fillText(`${WIDTH} x ${HEIGHT}`, 16, 32);
 
   const buffer = canvas.toBuffer("image/jpeg");
