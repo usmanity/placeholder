@@ -49,10 +49,9 @@ function getImage(size) {
   ctx.fillStyle = "#CCCCCC";
   ctx.fillRect(0, 0, WIDTH, HEIGHT);
   ctx.fillStyle = "#2A1863";
-  ctx.font = "32px Arial";
+  ctx.font = "32px sans-serif";
   ctx.fillText(`${WIDTH} x ${HEIGHT}`, 16, 32);
 
   const buffer = canvas.toBuffer("image/jpeg");
-  fs.writeFileSync("test.jpeg", buffer);
   return buffer;
 }
