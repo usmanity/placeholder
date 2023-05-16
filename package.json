@@ -1,5 +1,5 @@
 {
-  "name": "hellonode",
+  "name": "get-placeholder",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -12,12 +12,10 @@
     "url": "git+https://github.com/fly-examples/hellonode.git"
   },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fly-examples/hellonode/issues"
-  },
-  "homepage": "https://github.com/fly-examples/hellonode#readme",
+  "license": "MIT",
+  "homepage": "TODO",
   "dependencies": {
+    "canvas": "^2.11.2",
     "express": "^4.17.1"
   }
 }
