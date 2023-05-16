@@ -43,8 +43,8 @@ function getSize(params) {
 
 function getSvgImage(size) {
   const [width, height] = size;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" fill="none" viewBox="0 0 ${width} ${height}">
-    <path fill="#D9D9D9" />
-    <text x="33%" y="50%" font-family="monospace" font-size="35" fill="#262626">${width} x ${height}</text>
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" fill="none" viewBox="0 0 400 400">
+    <path fill="#D9D9D9" d="M0 0h400v400H0z"/>
+    <text x="25%" y="50%" font-family="monospace" font-size="35" fill="#262626">${width} x ${height}</text>
   </svg>`;
 }
